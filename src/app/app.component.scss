@@ -1,0 +1,16 @@
+.container {
+    display: grid;
+    & > div {
+        padding: 3%;
+    }
+
+    th, td {
+        border: black 1px solid;
+        padding: 3%;
+    }
+
+    tr {
+        display: grid;
+    }
+    
+}

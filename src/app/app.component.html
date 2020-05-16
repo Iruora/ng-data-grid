@@ -1,0 +1,14 @@
+<div class="container">
+  <thead>
+    <tr [ngStyle]="gridStyle">
+      <th 
+        *ngFor="let header of headers">{{header}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr [ngStyle]="gridStyle" *ngFor="let dataItem of data">
+      <td *ngFor="let attribute of getKeys(dataItem)">{{dataItem[attribute] || 'N.A'}}</td>
+    </tr>
+  </tbody>
+</div>

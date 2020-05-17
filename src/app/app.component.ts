@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {keys, get, toLower} from 'lodash';
+import {keys, get, toLower, map as lodashMap} from 'lodash';
+import { data as mockData, headers as mockHeaders } from './mock/mockData';
 
 @Component({
   selector: 'app-root',
@@ -8,43 +9,18 @@ import {keys, get, toLower} from 'lodash';
 })
 export class AppComponent {
   title = 'ngdata-grid';
-  headers = ['nom', 'prenom', 'age', 'pseudo'];
-  data = [
-    {
-      nom: 'AROURI',
-      prenom: 'Nidhal',
-      age: 25
-    },
-    {
-      nom: 'PARKER',
-      prenom: 'Peter',
-      age: 25
-    },
-    {
-      nom: 'KENT',
-      prenom: 'Clarck',
-      age: 25
-    },
-    {
-      nom: 'WAYNE',
-      prenom: 'Bruce',
-      age: 25
-    },
-  ].map( item => {
+  headers = mockHeaders;
+  data = mockData.map( item => {
     this.headers.forEach(header => {
-      item[toLower(header)] = get(item, toLower(header), null)
-    })
+      item[toLower(header)] = get(item, toLower(header), null);
+    });
     return item;
   });
   gridStyle = {
     'grid-template-columns': `repeat(${this.headers.length}, 1fr)`,
-  }
+  };
 
-  public getKeys(obj) {
-    return keys(obj);
-  }
-
-  public createArray(length, initialValue =  0) {
-    return Array(length).fill(initialValue);
+  public getHeadersAttributes() {
+    return lodashMap(this.headers, 'key');
   }
 }

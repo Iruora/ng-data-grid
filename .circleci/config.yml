@@ -12,7 +12,7 @@ jobs:
       - image: circleci/node:13.14-browsers-legacy
     steps:
       - checkout
-      - run: npm run install
+      - run: npm install
       - run: npm run test
 workflows:
   version: 2

@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:13.14-browsers-legacy
     steps:
       - checkout
+      - run: npm install
       - run: npm run build
   test:
     docker:
